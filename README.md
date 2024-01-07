@@ -23,10 +23,7 @@ The seg-scanner package is a thread safe port scanner that takes an IP range, an
 Install instructions are pending package release.
 
 ## Contribution Guidelines
-When contributing to this repository, please first discuss the change you wish to make via issue here on GitHub. Make sure all pull requests are tagged with a specific ticket number found in the repositories issues section.
-
-### Expectations for developers
-Before making any changes please create your own branch. Please follow all three points below:
+When contributing to this repository, please first discuss the change you wish to make via issue here on GitHub. Make sure all pull requests are tagged with a specific ticket number found in the repositories issues section.Before making any changes please create your own branch. Follow all three points below before opening a PR:
 1. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
 2.  Make sure all corresponding test cases pass.
 3. Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
