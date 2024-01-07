@@ -16,23 +16,23 @@ Many cyber security compliacne criteria require that network segementation be pu
 - Network Protocol something something 
 - Maybe a cool video to share/add
 
-## Install Instructions
+# Install Instructions
 - Simple for the end user
 - Documentation
 - Non Technical
 
-## Contribution Guidelines
+# Contribution Guidelines
 - Technical
 - For Programers
  
-### Expectations for developers
+## Expectations for developers
 - Fill out template 
 - Squash merges
 - IDK
 
-## Known Issues
+# Known Issues
 - Project incomplete
 - Readme needs work
 
-## Donation Link
+# Donation Link
 - Non existent at the moment
