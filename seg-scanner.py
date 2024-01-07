@@ -75,6 +75,7 @@ class segScanner():
             self.q.task_done()
 
     def execute(self):
+        self.splitPortRange()
         for port in self.portRange:
             self.q.put((self.target,port))
         for i in range(self.thread):
@@ -88,5 +89,4 @@ class segScanner():
 
 if __name__ == '__main__':
     seg = segScanner('39.62.16.101')
-    seg.splitPortRange()
     seg.execute()
