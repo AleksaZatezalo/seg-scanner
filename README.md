@@ -19,25 +19,23 @@ The seg-scanner package is a thread safe port scanner that takes an IP range, an
     <img src="port-scanning-attack.webp" />
 </p>
 
-
-
 ## Install Instructions
-- Simple for the end user
-- Documentation
-- Non Technical
+Install instructions are pending package release.
 
 ## Contribution Guidelines
-- Technical
-- For Programers
- 
-## Expectations for developers
-- Fill out template 
-- Squash merges
-- IDK
+When contributing to this repository, please first discuss the change you wish to make via issue here on GitHub. Make sure all pull requests are tagged with a specific ticket number found in the repositories issues section.
+
+### Expectations for developers
+Before making any changes please create your own branch. Please follow all three points below:
+1. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+2.  Make sure all corresponding test cases pass.
+3. Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
+
+Note that we have a code of conduct. Follow it in all your interactions with the project.
 
 ## Known Issues
-- Project incomplete
-- Readme needs work
+A list of known issues and features that are currently in development will be maintained here. Please open an issue in github if you would like something addressed.
 
 ## Donation Link
-- Non existent at the moment
+If you have benefited from this project and use Monero please consider donanting to the following address:
+46NzxHXUwe4UEJjNE6aebo8gz4D8KaBr3iq9bLdStspNaY1xaWxGtzA1pCbooRA4keXphzkY3326ZC9wHGTMTStJ8NPWXzZ
