@@ -6,7 +6,7 @@ Original Author: Aleksa Zatezalo
 """
 
 ##### To Do List#####
-# 2. Cleanup output
+# 2. Cleanup output (& Make it Fast)
 # 3. Make It Fast With Async
 # 3. Make It Work For Subnet (Add Pausing)
 # 5. Make It A Package
@@ -67,7 +67,7 @@ class segScanner():
 
     def worker(self):
         while not self.q.empty():
-            (ip,port) = self.q.get()
+            (self.target,port) = self.q.get()
             status = self.connect(port)
             self.lock.acquire()
             self.results[port] = status
@@ -80,12 +80,13 @@ class segScanner():
         for i in range(self.thread):
             t = threading.Thread(target=self.worker())
             t.start()
+            print("Starting Thread")
         print("Started a scan of " + self.target + "\n" + "-"*10)
         self.q.join()
         for port in self.portRange:
             print("Port " + str(port) + " is " + self.results[port])
 
 if __name__ == '__main__':
-    seg = segScanner('39.62.16.101', '80-120')
+    seg = segScanner('39.62.16.101')
     seg.splitPortRange()
     seg.execute()
