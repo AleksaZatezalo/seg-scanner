@@ -20,4 +20,32 @@ import threading
 import queue
 import asyncio
 
-# set a timeout of a few seconds
+# Global Variables
+results = {}
+lock = threading.Lock()
+q = queue.Queue()
+
+def connect(ip, port):
+    """
+    Connects to port, port, on ip address, ip, and returns the ports status.
+    Three potential status codes are 'Open', 'Filtered', and 'Closed'.
+    """
+    
+    status = ""
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(5)
+        connection = s.connect((ip, port))
+        status = "Open"
+        s.close()
+    
+    except socket.timeout:
+        status = "Filtered"
+
+    except socket.error as e:
+        if e.errno == errno.ECONNREFUSED:
+            status = "Closed"
+        else:
+            raise e
+    
+    return status
