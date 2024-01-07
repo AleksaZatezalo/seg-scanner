@@ -7,8 +7,8 @@ Original Author: Aleksa Zatezalo
 
 ##### To Do List#####
 # 2. Cleanup output
+# 3. Make It Fast With Async
 # 3. Make It Work For Subnet (Add Pausing)
-# 4. Make It Asyncio
 # 5. Make It A Package
 
 # Imports
