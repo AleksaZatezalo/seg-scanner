@@ -10,7 +10,7 @@ Seg-scanner (short for segmentation scanner) checks to make sure that a computer
 - Confirming that micro-segmentation has been correctly implemented
 
 For more info on the use-cases of network segemntation watch the video below.
-[![Watch the video](https://img.youtube.com/vi/ouvqTP3RajU/maxresdefault.jpg)](youtube.com/watch?v=ouvqTP3RajU)
+[![Watch the video](youtube.com/watch?v=ouvqTP3RajU)]
 
 ### Visuals
 - Add a Diagram
