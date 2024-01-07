@@ -16,7 +16,7 @@ For more info on the use-cases of network segemntation watch the video below.
 The seg-scanner package is a thread safe port scanner that takes an IP range, and a list of ports. It opens a socket and attempts to connect to every port in the list of ports for each IP in the IP range. It returns a list of open ports to standard output. Because this package is thread-safe and asyncronus multiple seg-scanners can be ran asyncronusly. The seg-scanner package takes an optional argument where users can define the listening port, in the event that we are using multiple scanners simultaneously and may want to listen on seperate ports. More details on port scanning and it's inner workings along with an in-depth description for the diagram below can be found [here](https://www.paloaltonetworks.com/cyberpedia/what-is-a-port-scan). 
 
 <p align="center">
-    ![Alt text](port-scanning-attack.webp)
+    <img src="port-scanning-attack.webp" />
 </p>
 
 
