@@ -82,11 +82,6 @@ class segScanner():
             t = threading.Thread(target=self.worker())
             t.start()
             print("Starting Thread")
-        print("Started a scan of " + self.target + "\n" + "-"*10)
         self.q.join()
         for port in self.portRange:
             print("Port " + str(port) + " is " + self.results[port])
-
-if __name__ == '__main__':
-    seg = segScanner('39.62.16.101')
-    seg.execute()
