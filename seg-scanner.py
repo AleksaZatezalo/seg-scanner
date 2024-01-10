@@ -6,11 +6,12 @@ Original Author: Aleksa Zatezalo
 """
 
 ##### To Do List#####
-# 1. Make This Async
-# 2. Make This A Package
-# 3. Make The Package Thread Safe
-# 4. Make This A Segmentation Scanner (IP Range Functionality)
-# 5. Publish This Package 
+# 1. Make This Async for Each Individual IP
+# 2. Make It Threaded Across an IP Range
+# 3. Add UDP Port Scanning Functionality
+# 4. Make It A Package
+# 5. Compate it to NMAP speed for port scanning (Add to Readme)
+# 6. Publish the package
 
 # Imports
 import socket
