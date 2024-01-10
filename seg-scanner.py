@@ -9,13 +9,14 @@ Original Author: Aleksa Zatezalo
 # 1. Make This Async for Each Individual IP
 # 2. Make It Threaded Across an IP Range
 # 3. Add UDP Port Scanning Functionality
-# 4. Make It A Package
-# 5. Compate it to NMAP speed for port scanning (Add to Readme)
-# 6. Optimize README (Make it consise and SEO Optimized)
-# 7. Publish the package
-# 8. New monero donation link (I am retarded)
-# 9. Add to cool hacktober fest repositories
-# 10. Share with friends (Lopez Mitic, Dr. Milan, and Whatsapp chats)
+# 4. Add Pausing Functionality
+# 5. Make It A Package
+# 6. Compate it to NMAP speed for port scanning (Add to Readme)
+# 7. Optimize README (Make it consise and SEO Optimized)
+# 8. Publish the package
+# 9. New monero donation link (I am retarded)
+# 10. Add to cool hacktober fest repositories
+# 11. Share with friends (Lopez Mitic, Dr. Milan, and Whatsapp chats)
 
 # Imports
 import socket

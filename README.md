@@ -3,11 +3,11 @@ Seg Scanner is a python package made to help with segmentation scanning during n
 
 ## An Overview of Seg Scanner
 Seg-scanner (short for segmentation scanner) checks to make sure that a computer in one subnet cannot reach a computer in another. It is made quickly scan a list of IPs and a corresponsing ports. Many cyber security compliacne criteria require that network segementation be implemented. For example PCI DSS requires that systems which stores, processes or transmit credit card data are isolated from those that do not. Segmentation scanning confirms that a computer on a certain subnet cannot reach another by attempting to connect to all ports of the corresponding subnet. If no ports are accessible the network can be seen as properly segmented. This seg scanner can be used in the flowing scenarios:
-- Ethical hacking & Red Teaming
-- Confirming Security Policy Implementation
-- Confirming that Zero Trust has been correctly implemented
-- Confirming that micro-segmentation has been correctly implemented
-- Compliance
+* Ethical hacking & Red Teaming
+* Confirming Security Policy Implementation
+* Confirming that Zero Trust has been correctly implemented
+* Confirming that micro-segmentation has been correctly implemented
+* Compliance
 
 For more info on the use-cases of network segemntation watch the video below.
 [![Watch the video](https://img.youtube.com/vi/ouvqTP3RajU/maxresdefault.jpg)](https://youtu.be/ouvqTP3RajU)
@@ -20,6 +20,11 @@ More details on port scanning and it's inner workings along with an in-depth des
 <p align="center">
     <img src="port-scanning-attack.webp" />
 </p>
+
+## Why Not Nmap?
+* Fill This Out (Important)
+* Debatibly Faster (Look Into Threading And Asyncio for NMAP)
+* Disscuss Pasuing Functionality and Rate Limiting
 
 ## Install Instructions
 Install instructions are pending package release.
