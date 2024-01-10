@@ -11,7 +11,8 @@ Original Author: Aleksa Zatezalo
 # 3. Add UDP Port Scanning Functionality
 # 4. Make It A Package
 # 5. Compate it to NMAP speed for port scanning (Add to Readme)
-# 6. Publish the package
+# 6. Optimize README (Make it consise and SEO Optimized)
+# 7. Publish the package
 
 # Imports
 import socket
