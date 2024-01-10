@@ -13,6 +13,9 @@ Original Author: Aleksa Zatezalo
 # 5. Compate it to NMAP speed for port scanning (Add to Readme)
 # 6. Optimize README (Make it consise and SEO Optimized)
 # 7. Publish the package
+# 8. New monero donation link (I am retarded)
+# 9. Add to cool hacktober fest repositories
+# 10. Share with friends (Lopez Mitic, Dr. Milan, and Whatsapp chats)
 
 # Imports
 import socket
