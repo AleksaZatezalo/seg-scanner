@@ -11,7 +11,7 @@ Original Author: Aleksa Zatezalo
 # 3. Compate it to NMAP speed for port scanning (Add to Readme)
 # 4. Optimize README (Make it consise, SEO Optimized, Add New Monero)
 # 5. Publish the package
-# 6. Add to Hacktoberfest & Share With Friends
+# 6. Add to Hacktoberfest, Share on Discord, Share on Reddit & Share With Friends
 
 # Imports
 import threading
