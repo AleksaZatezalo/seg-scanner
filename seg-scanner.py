@@ -6,10 +6,11 @@ Original Author: Aleksa Zatezalo
 """
 
 ##### To Do List#####
-# 2. Cleanup output (& Make it Fast)
-# 3. Make It Fast With Async
-# 3. Make It Work For Subnet (Add Pausing)
-# 5. Make It A Package
+# 1. Make This Async
+# 2. Make This A Package
+# 3. Make The Package Thread Safe
+# 4. Make This A Segmentation Scanner (IP Range Functionality)
+# 5. Publish This Package 
 
 # Imports
 import socket
