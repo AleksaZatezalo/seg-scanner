@@ -6,16 +6,12 @@ Original Author: Aleksa Zatezalo
 """
 
 ##### To Do List#####
-# 2. Make It Threaded Across an IP Range (First Class)
-# 3. Add UDP Port Scanning Functionality
-# 4. Add Pausing Functionality
-# 5. Make It A Package
-# 6. Compate it to NMAP speed for port scanning (Add to Readme)
-# 7. Optimize README (Make it consise and SEO Optimized)
-# 8. Publish the package
-# 9. New monero donation link (I am retarded)
-# 10. Add to cool hacktober fest repositories
-# 11. Share with friends (Lopez Mitic, Dr. Milan, and Whatsapp chats)
+# 1. Make It Threaded Across an IP Range (& Add Time)
+# 2. Make It A Package
+# 3. Compate it to NMAP speed for port scanning (Add to Readme)
+# 4. Optimize README (Make it consise, SEO Optimized, Add New Monero)
+# 5. Publish the package
+# 6. Add to Hacktoberfest & Share With Friends
 
 # Imports
 import threading
