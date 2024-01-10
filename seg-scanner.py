@@ -6,8 +6,7 @@ Original Author: Aleksa Zatezalo
 """
 
 ##### To Do List#####
-# 1. Make This Async for Each Individual IP
-# 2. Make It Threaded Across an IP Range
+# 2. Make It Threaded Across an IP Range (First Class)
 # 3. Add UDP Port Scanning Functionality
 # 4. Add Pausing Functionality
 # 5. Make It A Package
@@ -19,14 +18,32 @@ Original Author: Aleksa Zatezalo
 # 11. Share with friends (Lopez Mitic, Dr. Milan, and Whatsapp chats)
 
 # Imports
-import socket
-import errno
 import threading
 import queue
 import asyncio
 
-# returns True if a connection can be made, False otherwise
+class segScanner():
+    """
+    Asyncronus and threaded port scanner created to see which ports are accessible within subnets.
+    """
+
+    def __init__():
+        pass
+
+    def subnetToIPs():
+        pass
+
+    async def test_port_number():
+        pass
+
+    async def scanPorts():
+        pass
+
+    async def scanIPs():
+        pass
+
 async def test_port_number(host, port, timeout=3):
+    
     # create coroutine for opening a connection
     coro = asyncio.open_connection(host, port)
     # execute the coroutine with a timeout
@@ -43,6 +60,8 @@ async def test_port_number(host, port, timeout=3):
  
 # coroutine to scan ports as fast as possible
 async def scanner(host, task_queue):
+  
+    
     # read tasks forever
     while True:
         # read one task from the queue
@@ -78,7 +97,6 @@ async def main(host, ports, limit=100):
     await task_queue.put(None)
  
 # define a host and ports to scan
-host = 'python.org'
-ports = range(1, 1024)
-# start the asyncio program
-asyncio.run(main(host, ports))
+# host = 'python.org'
+# ports = range(79, 444)
+# asyncio.run(main(host, ports))
