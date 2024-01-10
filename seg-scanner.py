@@ -47,48 +47,75 @@ class segScanner():
             ports = [int(i) for i in self.portRange.split(",")]
 
         self.portRange = ports
-        
-    def connect(self, port):
-        """
-        Connects to port, port, on ip address, ip, and returns the ports status.
-        Three potential status codes are 'Open', 'Filtered', and 'Closed'.
-        """
-        status = ""
+
+    async def test_port_number(self, port, timeout=3):
+        # create async coroutine for opening a connection
+        coro = asyncio.open_connection(self.target, port)
+
+        # execute the coroutine with a timeout
         try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.settimeout(5)
-            connection = s.connect((self.target, port))
-            status = "Open"
-            s.close()
+            _, writer = await asyncio.wait_for(coro, timeout)
+            # close connection once opened
+            writer.close()
+            # indicate that a connection can be opened
+            return True
+        except asyncio.TimeoutError:
+            # indicate that a connection cannot be opened
+            return False
         
-        except socket.timeout:
-            status = "Filtered"
+    async def scan(self):
+        # report a status message
+        print("Scanning a host")
 
-        except socket.error as e:
-            if e.errno == errno.ECONNREFUSED:
-                status = "Closed"
-            else:
-                raise e
+        # scan ports sequentially
+        for port in self.portRange:
+            if await self.test_port_number(self.target, port):
+                print("Port " + port + " open")
+
+if __name__ == '__main__':
+    seg = segScanner('python.org', '79-82')
+    asyncio.run(seg.scan())        
+    # def connect(self, port):
+    #     """
+    #     Connects to port, port, on ip address, ip, and returns the ports status.
+    #     Three potential status codes are 'Open', 'Filtered', and 'Closed'.
+    #     """
+    #     status = ""
+    #     try:
+    #         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #         s.settimeout(5)
+    #         connection = s.connect((self.target, port))
+    #         status = "Open"
+    #         s.close()
         
-        return status
+    #     except socket.timeout:
+    #         status = "Filtered"
 
-    def worker(self):
-        while not self.q.empty():
-            (self.target,port) = self.q.get()
-            status = self.connect(port)
-            self.lock.acquire()
-            self.results[port] = status
-            self.lock.release()
-            self.q.task_done()
+    #     except socket.error as e:
+    #         if e.errno == errno.ECONNREFUSED:
+    #             status = "Closed"
+    #         else:
+    #             raise e
+        
+    #     return status
 
-    def execute(self):
-        self.splitPortRange()
-        for port in self.portRange:
-            self.q.put((self.target,port))
-        for i in range(self.thread):
-            t = threading.Thread(target=self.worker())
-            t.start()
-            print("Starting Thread")
-        self.q.join()
-        for port in self.portRange:
-            print("Port " + str(port) + " is " + self.results[port])
+    # def worker(self):
+    #     while not self.q.empty():
+    #         (self.target,port) = self.q.get()
+    #         status = self.connect(port)
+    #         self.lock.acquire()
+    #         self.results[port] = status
+    #         self.lock.release()
+    #         self.q.task_done()
+
+    # def execute(self):
+    #     self.splitPortRange()
+    #     for port in self.portRange:
+    #         self.q.put((self.target,port))
+    #     for i in range(self.thread):
+    #         t = threading.Thread(target=self.worker())
+    #         t.start()
+    #         print("Starting Thread")
+    #     self.q.join()
+    #     for port in self.portRange:
+    #         print("Port " + str(port) + " is " + self.results[port])
