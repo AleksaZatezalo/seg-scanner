@@ -22,9 +22,7 @@ More details on port scanning and it's inner workings along with an in-depth des
 </p>
 
 ## Why Not Nmap?
-* Fill This Out (Important)
-* Debatibly Faster (Look Into Threading And Asyncio for NMAP)
-* Disscuss Pasuing Functionality and Rate Limiting
+The way Seg Scanner implements multi-threading & async function calls allows it to scan an IP range for accessable ports signignificantly faster than a tool like nmap. Although nmap is a go to tool for many, in an enviroment where being stealthy is not a concern Seg Scanner will complete scans more quickly.
 
 ## Install Instructions
 Install instructions are pending package release.
