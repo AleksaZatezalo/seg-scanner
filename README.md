@@ -31,14 +31,18 @@ Install instructions are pending package release.
 
 ## Contribution Guidelines
 When contributing to this repository, please first discuss the change you wish to make via issue here on GitHub. Make sure all pull requests are tagged with a specific ticket number found in the repositories issues section.Before making any changes please create your own branch. Follow all three points below before opening a PR:
-1. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-2.  Make sure all corresponding test cases pass.
-3. Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
+1. Any changes you want to create must be tagged to an issue opened on this repo. If an issue you've found does not yet exit, please open it.
+2. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+3. Make sure all corresponding test cases pass.
+4. Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
 
 Note that we have a code of conduct. Follow it in all your interactions with the project.
 
 ## Known Issues
-A list of known issues and features that are currently in development will be maintained here. Please open an issue in github if you would like something addressed.
+A list of known issues and features that are currently being addressed are maintained here. As it stands issues are:
+* Output of the scan is currently printed to standerd output. It is ugly and is being beautified.
+* Code comments and doc-strings have not been created in a clear and principaled manner. This is being fixed. The same goes for coding style.
+* Time to finish scan is not properly implmented. This is being fixed.
 
 ## Donation Link
 If you have benefited from this project and use Monero please consider donanting to the following address:

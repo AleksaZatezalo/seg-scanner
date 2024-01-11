@@ -7,7 +7,7 @@ Original Author: Aleksa Zatezalo
 
 ##### To Do List#####
 # 1. Clean up output
-# 2. Make It A Package
+# 2. Add time to finish scan as output
 # 3. Optimize README (Make it consise, SEO Optimized, Add New Monero, Faster than Nmap)
 # 4. Publish the package
 # 5. Add to Hacktoberfest, Share on Discord, Share on & Share With Friends
@@ -81,7 +81,6 @@ class segScanner():
                 break
             
             # scan the port
-
             conn = await self.test_port_number(str(host), str(port))
             if conn:
                  # report the report if open
