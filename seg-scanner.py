@@ -7,7 +7,7 @@ Original Author: Aleksa Zatezalo
 
 ##### To Do List#####
 # 1. Clean up output
-# 2. Make It A Package
+# 2. Add time to finish scan as output
 # 3. Optimize README (Make it consise, SEO Optimized, Add New Monero, Faster than Nmap)
 # 4. Publish the package
 # 5. Add to Hacktoberfest, Share on Discord, Share on & Share With Friends
@@ -26,14 +26,16 @@ class segScanner():
     def __init__(self, ipRange, portRange, timeout=3):
         self.ipRange = ipRange
         self.portRange = portRange
-        self.timeout = timeout
+        self.timeout = timeout        
 
     def subnetToIPs(self):
         """
         Returns a list of IP addresses based on the subnet provided when initializing the class.
         """
 
-        return list(ipaddress.ip_network(self.ipRange, False).hosts())
+        ipList = list(ipaddress.ip_network(self.ipRange, False).hosts())
+        self.output = dict.fromkeys(ipList, [])
+        return ipList
     
     def splitPortRange(self):
         """
@@ -81,7 +83,6 @@ class segScanner():
                 break
             
             # scan the port
-
             conn = await self.test_port_number(str(host), str(port))
             if conn:
                  # report the report if open
@@ -126,6 +127,7 @@ class segScanner():
         return True
  
 # define a host and ports to scan
-scan = segScanner("151.101.192.223/8", "80-86")
-
+scan = segScanner("151.101.192.223/32", "80")
+time.sleep(3)
+print(scan.output)
 asyncio.run(scan.scanIPRange())
