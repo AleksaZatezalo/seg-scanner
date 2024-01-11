@@ -34,6 +34,20 @@ class segScanner():
         """
 
         return list(ipaddress.ip_network(self.ipRange, False).hosts())
+    
+    def splitPortRange(self):
+        """
+        Takes self.portRange that has the format XX-YY and returns two ints XX and YY. 
+        """
+
+        ports = range(1,65535)
+        if self.portRange != None and "-" in self.portRange:
+            [minPort,maxPort] = [int(i) for i in self.portRange.split("-")]
+            ports = range(minPort,maxPort+1)
+        elif self.portRange != None:
+            ports = [int(i) for i in self.portRange.split(",")]
+
+        self.portRange = ports
 
     async def test_port_number(self, host, port):
         """
@@ -72,11 +86,16 @@ class segScanner():
             if conn:
                  # report the report if open
                  print(f'> {host}:{port} [OPEN]')
+            else: 
+                print(f'> {host}:{port} [CLOSED]')
+
             # mark the item as processed
             task_queue.task_done()
 
     async def scanIPs(self, limit = 100):
         targets = self.subnetToIPs()
+        self.splitPortRange()
+
         for target in targets:
             print("Scanning: " + str(target))
             # create the task queue
@@ -85,18 +104,16 @@ class segScanner():
             workers = [asyncio.create_task(self.scanPorts(target, task_queue)) for _ in range(limit)]
 
             # issue tasks as fast as possible
-            # for port in self.portRange:
-            #     print("Adding port: " + port)
-            #     # add task to scan this port
-            #     await task_queue.put(port)
+            for port in self.portRange:
+                # add task to scan this port
+                await task_queue.put(port)
             # wait for all tasks to be complete
-            await task_queue.put(80)
             await task_queue.join()
 
             # signal no further tasks
             await task_queue.put(None)
  
 # define a host and ports to scan
-scan = segScanner("151.101.192.223/32", "80")
+scan = segScanner("151.101.192.223/31", "80-86")
 
 asyncio.run(scan.scanIPs())
