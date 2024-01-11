@@ -33,9 +33,13 @@ class segScanner():
         Returns a list of IP addresses based on the subnet provided when initializing the class.
         """
 
+        # Creating dictionary
         ipList = list(ipaddress.ip_network(self.ipRange, False).hosts())
+        for i in range(len(ipList)):
+            ipList[i] = str(ipList[i])
         self.output = dict.fromkeys(ipList, [])
-        return ipList
+        
+        return list(ipaddress.ip_network(self.ipRange, False).hosts())
     
     def splitPortRange(self):
         """
@@ -83,11 +87,10 @@ class segScanner():
                 break
             
             # scan the port
-            conn = await self.test_port_number(str(host), str(port))
-            if conn:
+            if await self.test_port_number(str(host), str(port)):
                  # report the report if open
                 print(f'> {host}:{port} [OPEN]')
-                self.output[host].append(port)
+                self.output[str(host)].append(port)
             else: 
                 print(f'> {host}:{port} [CLOSED]')
 
@@ -130,5 +133,5 @@ class segScanner():
 # define a host and ports to scan
 scan = segScanner("151.101.192.223/31", "80")
 output = asyncio.run(scan.scanIPRange())
-time.sleep(30)
+time.sleep(10)
 print(output)
