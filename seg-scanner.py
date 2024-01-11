@@ -65,11 +65,13 @@ class segScanner():
                 await task_queue.put(port)
                 # stop scanning
                 break
+            
             # scan the port
-            if await self.test_port_number(host, port):
-                # report the report if open
-                print(port)
-                print(f'> {host}:{port} [OPEN]')
+
+            conn = await self.test_port_number(str(host), str(port))
+            if conn:
+                 # report the report if open
+                 print(f'> {host}:{port} [OPEN]')
             # mark the item as processed
             task_queue.task_done()
 
@@ -82,7 +84,6 @@ class segScanner():
             # start the port scanning coroutines
             workers = [asyncio.create_task(self.scanPorts(target, task_queue)) for _ in range(limit)]
 
-            print("Worker Created")
             # issue tasks as fast as possible
             # for port in self.portRange:
             #     print("Adding port: " + port)
@@ -90,14 +91,12 @@ class segScanner():
             #     await task_queue.put(port)
             # wait for all tasks to be complete
             await task_queue.put(80)
-            print("awaiting")
             await task_queue.join()
 
-            print("almost done")
             # signal no further tasks
             await task_queue.put(None)
  
 # define a host and ports to scan
-scan = segScanner("151.101.192.223/31", "80")
+scan = segScanner("151.101.192.223/32", "80")
 
 asyncio.run(scan.scanIPs())
