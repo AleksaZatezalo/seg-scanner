@@ -87,6 +87,7 @@ class segScanner():
             if conn:
                  # report the report if open
                 print(f'> {host}:{port} [OPEN]')
+                self.output[host].append(port)
             else: 
                 print(f'> {host}:{port} [CLOSED]')
 
@@ -110,7 +111,6 @@ class segScanner():
         # signal no further tasks
         await task_queue.put(None)
         
-        
 
     async def scanIPRange(self):
         """
@@ -118,16 +118,17 @@ class segScanner():
         """
         
         # Functions needed to start program
+        print("Scanning of targets begun \n")
         targets = self.subnetToIPs()
         self.splitPortRange()
         for ipAddress in targets:
             threading.Thread(target=asyncio.run, args={self.scanIP(target=ipAddress)}).start()
 
         # Ending functions
-        return True
+        return self.output
  
 # define a host and ports to scan
-scan = segScanner("151.101.192.223/32", "80")
-time.sleep(3)
-print(scan.output)
-asyncio.run(scan.scanIPRange())
+scan = segScanner("151.101.192.223/31", "80")
+output = asyncio.run(scan.scanIPRange())
+time.sleep(30)
+print(output)
