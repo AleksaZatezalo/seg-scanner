@@ -6,7 +6,7 @@ Original Author: Aleksa Zatezalo
 """
 
 ##### To Do List#####
-# 1. Make It Threaded Across an IP Range (& Add Time)
+# 1. Make It Threaded Across an IP Range
 # 2. Make It A Package
 # 3. Compate it to NMAP speed for port scanning (Add to Readme)
 # 4. Optimize README (Make it consise, SEO Optimized, Add New Monero)
@@ -17,6 +17,7 @@ Original Author: Aleksa Zatezalo
 import threading
 import ipaddress
 import asyncio
+import time
 
 class segScanner():
     """
@@ -93,11 +94,13 @@ class segScanner():
             task_queue.task_done()
 
     async def scanIPs(self, limit = 100):
+        start = time.time()
+        print("Starting Scan")
         targets = self.subnetToIPs()
         self.splitPortRange()
 
         for target in targets:
-            print("Scanning: " + str(target))
+            print("\nScanning: " + str(target))
             # create the task queue
             task_queue = asyncio.Queue()
             # start the port scanning coroutines
@@ -112,6 +115,8 @@ class segScanner():
 
             # signal no further tasks
             await task_queue.put(None)
+        total_time = time.time() - start
+        print("\nTime to finish is: %f seconds" % total_time)
  
 # define a host and ports to scan
 scan = segScanner("151.101.192.223/31", "80-86")
