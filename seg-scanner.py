@@ -8,7 +8,7 @@ Original Author: Aleksa Zatezalo
 ##### To Do List#####
 # 1. Clean up output
 # 2. Add time to finish scan as output
-# 3. Optimize README (Make it consise, SEO Optimized, Add New Monero, Faster than Nmap)
+# 3. Optimize README (Make it consise, SEO Optimized, Add New Monero, Faster than Nmap) & Add Stickers Like Aleksa Readme
 # 4. Publish the package
 # 5. Add to Hacktoberfest, Share on Discord, Share on & Share With Friends
 
