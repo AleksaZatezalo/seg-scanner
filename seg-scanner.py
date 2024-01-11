@@ -6,12 +6,11 @@ Original Author: Aleksa Zatezalo
 """
 
 ##### To Do List#####
-# 1. Make It Threaded Across an IP Range
+# 1. Clean up output
 # 2. Make It A Package
-# 3. Compate it to NMAP speed for port scanning (Add to Readme)
-# 4. Optimize README (Make it consise, SEO Optimized, Add New Monero)
-# 5. Publish the package
-# 6. Add to Hacktoberfest, Share on Discord, Share on & Share With Friends
+# 3. Optimize README (Make it consise, SEO Optimized, Add New Monero, Faster than Nmap)
+# 4. Publish the package
+# 5. Add to Hacktoberfest, Share on Discord, Share on & Share With Friends
 
 # Imports
 import threading
