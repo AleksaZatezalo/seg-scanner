@@ -11,11 +11,11 @@ Original Author: Aleksa Zatezalo
 # 3. Compate it to NMAP speed for port scanning (Add to Readme)
 # 4. Optimize README (Make it consise, SEO Optimized, Add New Monero)
 # 5. Publish the package
-# 6. Add to Hacktoberfest, Share on Discord, Share on Reddit & Share With Friends
+# 6. Add to Hacktoberfest, Share on Discord, Share on & Share With Friends
 
 # Imports
 import threading
-import queue
+import ipaddress
 import asyncio
 
 class segScanner():
@@ -23,76 +23,81 @@ class segScanner():
     Asyncronus and threaded port scanner created to see which ports are accessible within subnets.
     """
 
-    def __init__():
-        pass
+    def __init__(self, ipRange, portRange, timeout=3):
+        self.ipRange = ipRange
+        self.portRange = portRange
+        self.timeout = timeout
 
-    def subnetToIPs():
-        pass
+    def subnetToIPs(self):
+        """
+        Returns a list of IP addresses based on the subnet provided when initializing the class.
+        """
 
-    async def test_port_number():
-        pass
+        return list(ipaddress.ip_network(self.ipRange, False).hosts())
 
-    async def scanPorts():
-        pass
+    async def test_port_number(self, host, port):
+        """
+        Uses async function calls to test if a TCP port is open.
+        """
+        
+        # create coroutine for opening a connection
+        coro = asyncio.open_connection(host, port)
+        # execute the coroutine with a timeout
+        try:
+            # open the connection and wait for a moment
+            _,writer = await asyncio.wait_for(coro, self.timeout)
+            # close connection once opened
+            writer.close()
+            # indicate the connection can be opened
+            return True
+        except asyncio.TimeoutError:
+            # indicate the connection cannot be opened
+            return False
 
-    async def scanIPs():
-        pass
+    async def scanPorts(self, host, task_queue):
+        # read tasks forever
+        while True:
+            # read one task from the queue
+            port = await task_queue.get()
+            # check for a request to stop scanning
+            if port is None:
+                # add it back for the other scanners
+                await task_queue.put(port)
+                # stop scanning
+                break
+            # scan the port
+            if await self.test_port_number(host, port):
+                # report the report if open
+                print(port)
+                print(f'> {host}:{port} [OPEN]')
+            # mark the item as processed
+            task_queue.task_done()
 
-async def test_port_number(host, port, timeout=3):
-    
-    # create coroutine for opening a connection
-    coro = asyncio.open_connection(host, port)
-    # execute the coroutine with a timeout
-    try:
-        # open the connection and wait for a moment
-        _,writer = await asyncio.wait_for(coro, timeout)
-        # close connection once opened
-        writer.close()
-        # indicate the connection can be opened
-        return True
-    except asyncio.TimeoutError:
-        # indicate the connection cannot be opened
-        return False
- 
-# coroutine to scan ports as fast as possible
-async def scanner(host, task_queue):
-  
-    
-    # read tasks forever
-    while True:
-        # read one task from the queue
-        port = await task_queue.get()
-        # check for a request to stop scanning
-        if port is None:
-            # add it back for the other scanners
-            await task_queue.put(port)
-            # stop scanning
-            break
-        # scan the port
-        if await test_port_number(host, port):
-            # report the report if open
-            print(f'> {host}:{port} [OPEN]')
-        # mark the item as processed
-        task_queue.task_done()
- 
-# main coroutine
-async def main(host, ports, limit=100):
-    # report a status message
-    print(f'Scanning {host}...')
-    # create the task queue
-    task_queue = asyncio.Queue()
-    # start the port scanning coroutines
-    workers = [asyncio.create_task(scanner(host, task_queue)) for _ in range(limit)]
-    # issue tasks as fast as possible
-    for port in ports:
-        # add task to scan this port
-        await task_queue.put(port)
-    # wait for all tasks to be complete
-    await task_queue.join()
-    # signal no further tasks
-    await task_queue.put(None)
+    async def scanIPs(self, limit = 100):
+        targets = self.subnetToIPs()
+        for target in targets:
+            print("Scanning: " + str(target))
+            # create the task queue
+            task_queue = asyncio.Queue()
+            # start the port scanning coroutines
+            workers = [asyncio.create_task(self.scanPorts(target, task_queue)) for _ in range(limit)]
+
+            print("Worker Created")
+            # issue tasks as fast as possible
+            # for port in self.portRange:
+            #     print("Adding port: " + port)
+            #     # add task to scan this port
+            #     await task_queue.put(port)
+            # wait for all tasks to be complete
+            await task_queue.put(80)
+            print("awaiting")
+            await task_queue.join()
+
+            print("almost done")
+            # signal no further tasks
+            await task_queue.put(None)
  
 # define a host and ports to scan
-# host = 'python.org'
-# ports = range(79, 444)
-# asyncio.run(main(host, ports))
+scan = segScanner("151.101.192.223/31", "80")
+
+asyncio.run(scan.scanIPs())
