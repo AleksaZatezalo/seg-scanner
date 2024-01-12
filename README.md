@@ -37,10 +37,7 @@ When contributing to this repository, please first discuss the change you wish t
 Note that we have a code of conduct. Follow it in all your interactions with the project.
 
 ## Known Issues
-A list of known issues and features that are currently being addressed are maintained here. As it stands issues are:
-* Output of the scan is currently printed to standerd output. It is ugly and is being beautified.
-* Code comments and doc-strings have not been created in a clear and principaled manner. This is being fixed. The same goes for coding style.
-* Time to finish scan is not properly implmented. This is being fixed.
+A list of known issues and features that are currently being addressed are maintained on the github issues tab. Please look at the list of known issues before raising a new issue.
 
 ## Donation Link
 If you have benefited from this project and use Monero please consider donanting to the following address:

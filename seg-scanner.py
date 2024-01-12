@@ -5,11 +5,6 @@ Date (Last Updated): January 2024
 Original Author: Aleksa Zatezalo
 """
 
-##### To Do List#####
-# 3. Optimize README (Make it consise, SEO Optimized, Add New Monero, Faster than Nmap) & Add Stickers Like Aleksa Readme
-# 4. Publish the package
-# 5. Add to Hacktoberfest, Share on Discord, Share on & Share With Friends
-
 # Imports
 import threading
 import ipaddress
@@ -73,6 +68,10 @@ class segScanner():
             return False
 
     async def scanPorts(self, host, task_queue):
+        """
+        Scans a port and prints status to STDO. Adds open ports to the output dictionary.
+        """
+
         # read tasks forever
         while True:
             # read one task from the queue
@@ -97,6 +96,10 @@ class segScanner():
             task_queue.task_done()
 
     async def scanIP(self, limit=100, target="127.0.0.1"):
+        """
+        Scans an IP for open ports using async function calls.
+        """
+
         # create the task queue
         task_queue = asyncio.Queue()
         # start the port scanning coroutines
@@ -115,8 +118,9 @@ class segScanner():
 
     async def scanIPRange(self):
         """
-        Scans a range of IPs based on input added when the class was initialized.
+        Scans a range of IPs based on input added when the class was initialized. Opens a thread for each new IP.
         """
+
         # Functions needed to start program
         print("Scanning of targets begun \n")
         targets = self.subnetToIPs()
