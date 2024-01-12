@@ -41,4 +41,4 @@ A list of known issues and features that are currently being addressed are maint
 
 ## Donation Link
 If you have benefited from this project and use Monero please consider donanting to the following address:
-46NzxHXUwe4UEJjNE6aebo8gz4D8KaBr3iq9bLdStspNaY1xaWxGtzA1pCbooRA4keXphzkY3326ZC9wHGTMTStJ8NPWXzZ
+47RoH3K4j8STLSh8ZQ2vUXZdh7GTK6dBy7uEBopegzkp6kK4fBrznkKjE3doTamn3W7A5DHbWXNdjaz2nbZmSmAk8X19ezQ
