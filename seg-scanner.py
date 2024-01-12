@@ -6,8 +6,6 @@ Original Author: Aleksa Zatezalo
 """
 
 ##### To Do List#####
-# 1. Clean up output
-# 2. Add time to finish scan as output
 # 3. Optimize README (Make it consise, SEO Optimized, Add New Monero, Faster than Nmap) & Add Stickers Like Aleksa Readme
 # 4. Publish the package
 # 5. Add to Hacktoberfest, Share on Discord, Share on & Share With Friends
@@ -91,6 +89,7 @@ class segScanner():
                  # report the report if open
                 print(f'> {host}:{port} [OPEN]')
                 self.output[str(host)].append(port)
+                self.output[str(host)] = list(set(self.output[str(host)]))
             else: 
                 print(f'> {host}:{port} [CLOSED]')
 
@@ -98,7 +97,6 @@ class segScanner():
             task_queue.task_done()
 
     async def scanIP(self, limit=100, target="127.0.0.1"):
-        
         # create the task queue
         task_queue = asyncio.Queue()
         # start the port scanning coroutines
@@ -119,19 +117,10 @@ class segScanner():
         """
         Scans a range of IPs based on input added when the class was initialized.
         """
-        
         # Functions needed to start program
         print("Scanning of targets begun \n")
         targets = self.subnetToIPs()
         self.splitPortRange()
         for ipAddress in targets:
             threading.Thread(target=asyncio.run, args={self.scanIP(target=ipAddress)}).start()
-
-        # Ending functions
         return self.output
- 
-# define a host and ports to scan
-scan = segScanner("151.101.192.223/31", "80")
-output = asyncio.run(scan.scanIPRange())
-time.sleep(10)
-print(output)
