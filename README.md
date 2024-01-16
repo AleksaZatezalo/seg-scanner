@@ -13,7 +13,7 @@ For more info on the use-cases of network segemntation watch the video below.
 [![Watch the video](https://img.youtube.com/vi/ouvqTP3RajU/maxresdefault.jpg)](https://youtu.be/ouvqTP3RajU)
 
 ### Additional Technical Details
-The seg-scanner package is an asyncronus and thread port scanner that takes an IP range, and a list of ports. It opens a socket and attempts to connect to every port in the list of ports for each IP in the IP range. It returns a list of open ports to standard output. A request to a specific port on a specific IP is made asyncronusly. When scanning a subnet, multiple threads are spawned with each thread making asyncronus reguests for a corresponding IP. This package is made to support both UDP and TCP port scanning.
+The seg-scanner package is an asynchronous and multi-threaded port scanner that takes an IP range, and a list of ports. It opens a socket and attempts to connect to every port in the list of ports for each IP in the IP range. It returns a list of open ports to standard output. A request to a specific port on a specific IP is made asynchronously. When scanning a subnet, multiple threads are spawned with each thread making asynchronous request for a corresponding IP. This package is made to support both UDP and TCP port scanning.
 
 More details on port scanning and it's inner workings along with an in-depth description for the diagram below can be found [here](https://www.paloaltonetworks.com/cyberpedia/what-is-a-port-scan). 
 
@@ -22,7 +22,7 @@ More details on port scanning and it's inner workings along with an in-depth des
 </p>
 
 ## Why Not Nmap?
-The way Seg Scanner implements multi-threading & async function calls allows it to scan an IP range for accessable ports signignificantly faster than a tool like nmap. Although nmap is a go to tool for many, in an enviroment where being stealthy is not a concern Seg Scanner will complete scans more quickly.
+The way Seg Scanner implements multi-threading & async function calls allows it to scan an IP range for accessable ports signignificantly faster than a tool like nmap. Although nmap is a go-to tool for many, in an enviroment where being stealthy is not a concern Seg Scanner will complete scans more quickly.
 
 ## Install Instructions
 Install instructions are pending package release.
