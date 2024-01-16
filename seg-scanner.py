@@ -5,6 +5,11 @@ Date (Last Updated): January 2024
 Original Author: Aleksa Zatezalo
 """
 
+# To Do
+# Threaded Dictionary Usage
+# UDP Connection Scan
+# Timestamp
+
 # Imports
 import threading
 import ipaddress
