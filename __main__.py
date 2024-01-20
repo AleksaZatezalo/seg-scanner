@@ -50,6 +50,10 @@ class segScanner():
     async def test_port_number(self, host, port):
         """
         Uses async function calls to test if a TCP port is open.
+        
+        ARGUMENTS
+        * host: String. IP address of the host we are connecting too.
+        * port: Integer. The port we are connecting too.
         """
         
         # create coroutine for opening a connection
@@ -69,6 +73,10 @@ class segScanner():
     async def scanPorts(self, host, task_queue):
         """
         Scans a port and prints status to STDO. Adds open ports to the output dictionary.
+
+        ARGUMENTS
+        * host: String. IP address of the host we are connecting too.
+        * task_queue: Queue. A queue of ports for the function scanPorts to connect to.
         """
 
         # read tasks forever
@@ -94,15 +102,19 @@ class segScanner():
             # mark the item as processed
             task_queue.task_done()
 
-    async def scanIP(self, limit=100, target="127.0.0.1"):
+    async def scanIP(self, limit=100, host="127.0.0.1"):
         """
         Scans an IP for open ports using async function calls.
+
+        ARGUMENTS
+        * host: String. IP address of the host we are connecting too.
+        * limit: Integer. The maximum ammount of async coroutines we will have. Defualts to 100. 
         """
 
         # create the task queue
         task_queue = asyncio.Queue()
         # start the port scanning coroutines
-        workers = [asyncio.create_task(self.scanPorts(target, task_queue)) for _ in range(limit)]
+        [asyncio.create_task(self.scanPorts(host, task_queue)) for _ in range(limit)]
 
         # issue tasks as fast as possible
         for port in self.portRange:
@@ -125,5 +137,12 @@ class segScanner():
         targets = self.subnetToIPs()
         self.splitPortRange()
         for ipAddress in targets:
-            threading.Thread(target=asyncio.run, args={self.scanIP(target=ipAddress)}).start()
+            threading.Thread(target=asyncio.run, args={self.scanIP(host=ipAddress)}).start()
         return self.output
+    
+
+# import time
+# seg = segScanner("31.13.80.36", "80")
+# asyncio.run(seg.scanIPRange())
+# time.sleep(10)
+# print(seg.output)
