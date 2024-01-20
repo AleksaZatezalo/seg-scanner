@@ -1,0 +1,8 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "segScanner"
+description = "A async and multi-threaded program to scan a range of IPs for open ports"
+version = "1.0.0"
