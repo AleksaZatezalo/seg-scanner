@@ -25,7 +25,10 @@ More details on port scanning and it's inner workings along with an in-depth des
 The way Seg Scanner implements multi-threading & async function calls allows it to scan an IP range for accessable ports signignificantly faster than a tool like nmap. Although nmap is a go-to tool for many, in an enviroment where being stealthy is not a concern Seg Scanner will complete scans more quickly.
 
 ## Install Instructions
-Install instructions are pending package release.
+To install this package run the following command in your command line:
+```
+pip install segScanner==1.0.0
+```
 
 ## Contribution Guidelines
 When contributing to this repository, please first discuss the change you wish to make via issue here on GitHub. Make sure all pull requests are tagged with a specific ticket number found in the repositories issues section.Before making any changes please create your own branch. Follow all three points below before opening a PR:
