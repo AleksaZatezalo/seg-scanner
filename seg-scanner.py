@@ -133,8 +133,3 @@ class segScanner():
         for ipAddress in targets:
             threading.Thread(target=asyncio.run, args={self.scanIP(target=ipAddress)}).start()
         return self.output
-
-seg = segScanner("31.13.80.36/30", "80")
-output =asyncio.run(seg.scanIPRange())
-time.sleep(5)
-print(output)
