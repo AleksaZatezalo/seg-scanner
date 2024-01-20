@@ -24,7 +24,7 @@ class segScanner():
     def __init__(self, ipRange, portRange, timeout=3):
         self.ipRange = ipRange
         self.portRange = portRange
-        self.timeout = timeout        
+        self.timeout = timeout
 
     def subnetToIPs(self):
         """
@@ -79,6 +79,7 @@ class segScanner():
 
         # read tasks forever
         while True:
+            
             # read one task from the queue
             port = await task_queue.get()
             # check for a request to stop scanning
@@ -87,13 +88,12 @@ class segScanner():
                 await task_queue.put(port)
                 # stop scanning
                 break
-            
             # scan the port
             if await self.test_port_number(str(host), str(port)):
-                 # report the report if open
+                # report the report if open
                 print(f'> {host}:{port} [OPEN]')
                 self.output[str(host)].append(port)
-                self.output[str(host)] = list(set(self.output[str(host)]))
+                # self.output[str(host)] = list(set(self.output[str(host)]))
             else: 
                 print(f'> {host}:{port} [CLOSED]')
 
@@ -133,3 +133,8 @@ class segScanner():
         for ipAddress in targets:
             threading.Thread(target=asyncio.run, args={self.scanIP(target=ipAddress)}).start()
         return self.output
+
+seg = segScanner("31.13.80.36/30", "80")
+output =asyncio.run(seg.scanIPRange())
+time.sleep(5)
+print(output)
